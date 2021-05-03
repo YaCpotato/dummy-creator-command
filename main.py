@@ -12,7 +12,7 @@ colored_warning = termcolor.colored(warning, 'red')
 guide_1 = termcolor.colored('Enter length of dataframe: ', 'green')
 guide_2 = termcolor.colored('Enter the column name: ', 'green')
 guide_3 = termcolor.colored('Enter the list of value separated by spaces: ', 'green')
-guide_4 = termcolor.colored('Enter the percentages of the values ​​you entered in the same order separated by spaces: ', 'green')
+guide_4 = termcolor.colored('Enter the percentages of the values you entered in the same order separated by spaces: ', 'green')
 
 retry = termcolor.colored('must be a number. please retry.', 'red')
 
@@ -41,11 +41,8 @@ if __name__ == '__main__':
     col_name = input(guide_2)
     values = input(guide_3).split(' ')
     values_percentage = [int(n) for n in input(guide_4).split(' ')]
-    print(values)
-    print(values_percentage)
     
     a = random.choices(population = values, weights = values_percentage, k = length)
-    print(a)
     
     
     
