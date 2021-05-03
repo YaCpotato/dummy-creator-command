@@ -41,6 +41,12 @@ if __name__ == '__main__':
     col_name = input(guide_2)
     values = input(guide_3).split(' ')
     values_percentage = [int(n) for n in input(guide_4).split(' ')]
+    print(values)
+    print(values_percentage)
+    
+    a = random.choices(population = values, weights = values_percentage, k = length)
+    print(a)
+    
     
     
     
