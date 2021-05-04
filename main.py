@@ -24,7 +24,7 @@ guide_4 = termcolor.colored('Enter the percentages of the values you entered in 
 
 retry = termcolor.colored('must be a number. please retry.', 'red')
 
-df = pd.DataFrame()
+df = pd.DataFrame(index=[], columns=[])
 
 def do_action():
     global df
@@ -38,9 +38,8 @@ def do_action():
     elif user_action == ua_exit:
         os.exit
     elif user_action == ua_preview:
-        print(df.head())
+        print(df.transpose().head())
         do_action()
-    
     # if create column...
 
     # define column name
@@ -50,17 +49,21 @@ def do_action():
         values = input(guide_3).split(' ')
         values_percentage = [int(n) for n in input(guide_4).split(' ')]
         series = create_categorical(col_name, values, values_percentage)
-        df.assign(series)
-        print('colum added.')
+        print(type(series))
+        print(series)
+        df = df.append(series, ignore_index = True)
+        print('column added.')
     elif user_action == ua_create_numeric:
         print('this selection not supported yet.')
+    
+    do_action()
 
 
 def create_categorical(col_name, values, values_percentage):
     # if first columns, normal create
     series_value = random.choices(population = values, weights = values_percentage, k = length)
     column = pd.Series(series_value, name = col_name, dtype='str')
-    return Series
+    return column
 
 if __name__ == '__main__':
     # parser = argparse.ArgumentParser()
@@ -81,11 +84,8 @@ if __name__ == '__main__':
     except:
         print(retry)
         length = int(input(guide_1))
-        
-    try:
-        do_action()
-    finally:
-        do_action()
+    
+    do_action()
     
     
     
