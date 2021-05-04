@@ -1,13 +1,19 @@
-import argparse
-import termcolor
 import base
 import random
 
-# 警告(Warning)
-warning = '*' * 30 + '\n'
-warning += '*{:^28}*\n'.format('Warning')
-warning += '*' * 30 + '\n'
-colored_warning = termcolor.colored(warning, 'red')
+# command line value
+import argparse
+
+# cli color
+import termcolor
+
+# cli selector and select definition
+import enquiries
+ua_create_categorical = termcolor.colored('Add categorical column: ', 'green')
+ua_create_numeric = termcolor.colored('Add numeric column: ', 'green')
+ua_publish = 'Complete creation and publish data.'
+ua_exit = 'Stop creating data and EXIT'
+actions = [ua_create_categorical, ua_create_numeric, ua_publish, ua_exit]
 
 guide_1 = termcolor.colored('Enter length of dataframe: ', 'green')
 guide_2 = termcolor.colored('Enter the column name: ', 'green')
@@ -43,6 +49,19 @@ if __name__ == '__main__':
     values_percentage = [int(n) for n in input(guide_4).split(' ')]
     
     a = random.choices(population = values, weights = values_percentage, k = length)
+    
+    user_action = enquiries.choose('Choose Action: ', actions)
+    
+    if user_action == ua_create_categorical:
+        print(ua_create_categorical)
+    elif user_action == ua_create_numeric:
+        print(ua_create_numeric)
+    elif user_action == ua_publish:
+        print(ua_publish)
+    elif user_action == ua_exit:
+        print(ua_exit)
+    else:
+        print('OOOOOO')
     
     
     
