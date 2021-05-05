@@ -33,10 +33,10 @@ def do_action():
     
     # if publish or exit
     if user_action == ua_publish:
-        print(ua_publish)
-        os.exit
+        df.to_csv('')
+        exit()
     elif user_action == ua_exit:
-        os.exit
+        exit()
     elif user_action == ua_preview:
         print(df.transpose().head())
         do_action()
