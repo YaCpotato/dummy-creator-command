@@ -25,6 +25,7 @@ guide_2 = termcolor.colored('Enter the column name: ', 'green')
 guide_3 = termcolor.colored('Enter the list of value separated by spaces: ', 'green')
 guide_4 = termcolor.colored('Enter the percentages of the values you entered in the same order separated by spaces: ', 'green')
 
+# message case of unexpected
 retry = termcolor.colored('must be a number. please retry.', 'red')
 
 df = pd.DataFrame(index=[], columns=[])
@@ -36,7 +37,11 @@ def do_action():
     
     # if publish or exit
     if user_action == ua_publish:
-        df.to_csv('')
+        name = input('Save as.. :') + '.csv'
+        if name[-8:] == '.csv.csv':
+            name = name[:-4]
+        df = df.transpose()
+        df.to_csv(name)
         exit()
     elif user_action == ua_exit:
         exit()
