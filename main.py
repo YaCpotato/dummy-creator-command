@@ -17,7 +17,10 @@ ua_publish = 'Complete creation and publish data.'
 ua_exit = termcolor.colored('Stop creating data and EXIT', 'yellow')
 actions = [ua_create_categorical, ua_create_numeric, ua_preview, ua_publish, ua_exit]
 
+# cli navigation beginning
 guide_1 = termcolor.colored('Enter length of dataframe: ', 'green')
+
+# cli navigation add column
 guide_2 = termcolor.colored('Enter the column name: ', 'green')
 guide_3 = termcolor.colored('Enter the list of value separated by spaces: ', 'green')
 guide_4 = termcolor.colored('Enter the percentages of the values you entered in the same order separated by spaces: ', 'green')
