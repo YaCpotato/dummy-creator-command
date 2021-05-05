@@ -37,11 +37,12 @@ def do_action():
     
     # if publish or exit
     if user_action == ua_publish:
-        name = input('Save as.. :') + '.csv'
-        if name[-8:] == '.csv.csv':
-            name = name[:-4]
-        df = df.transpose()
-        df.to_csv(name)
+        name = input('Save as.. :')
+        if name[-4:] != '.csv':
+            name = name + '.csv'
+        
+        #FIXME データフレームの形が行と列で逆になっている
+        df = df.transpose().to_csv(name)
         exit()
     elif user_action == ua_exit:
         exit()
