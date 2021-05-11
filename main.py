@@ -42,12 +42,12 @@ def do_action():
             name = name + '.csv'
         
         #FIXME データフレームの形が行と列で逆になっている
-        df = df.transpose().to_csv(name)
+        df.to_csv(name)
         exit()
     elif user_action == ua_exit:
         exit()
     elif user_action == ua_preview:
-        print(df.transpose().head())
+        print(df.head())
         do_action()
     # if create column...
 
@@ -57,10 +57,12 @@ def do_action():
     if user_action == ua_create_categorical:
         values = input(guide_3).split(' ')
         values_percentage = [int(n) for n in input(guide_4).split(' ')]
-        series = create_categorical(col_name, values, values_percentage)
-        print(type(series))
-        print(series)
-        df = df.append(series, ignore_index = True)
+        df[col_name] = random.choices(population = values, weights = values_percentage, k = length)
+        
+        #series = create_categorical(col_name, values, values_percentage)
+        #print(type(series))
+        #print(series)
+        #df = df.append(series, ignore_index = True)
         print('column added.')
     elif user_action == ua_create_numeric:
         print('this selection not supported yet.')
@@ -68,11 +70,11 @@ def do_action():
     do_action()
 
 
-def create_categorical(col_name, values, values_percentage):
-    # if first columns, normal create
-    series_value = random.choices(population = values, weights = values_percentage, k = length)
-    column = pd.Series(series_value, name = col_name, dtype='str')
-    return column
+# def create_categorical(col_name, values, values_percentage):
+#     # if first columns, normal create
+#     series_value = random.choices(population = values, weights = values_percentage, k = length)
+#     column = pd.Series(series_value, name = col_name, dtype='str')
+#     return column
 
 if __name__ == '__main__':
     # parser = argparse.ArgumentParser()
