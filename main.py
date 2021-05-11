@@ -17,9 +17,13 @@ ua_publish = 'Complete creation and publish data.'
 ua_exit = termcolor.colored('Stop creating data and EXIT', 'yellow')
 actions = [ua_create_categorical, ua_create_numeric, ua_preview, ua_publish, ua_exit]
 
+categorical_df = termcolor.colored('Categorical', 'green')
+timeseries_df = termcolor.colored('TimeSeries', 'green')
+tscs_selection = [categorical_df, timeseries_df]
+
 # cli navigation beginning
 guide_1 = termcolor.colored('Enter length of dataframe: ', 'green')
-
+guide_b1 = termcolor.colored('Enter index name of dataframe: ', 'green')
 # cli navigation add column
 guide_2 = termcolor.colored('Enter the column name: ', 'green')
 guide_3 = termcolor.colored('Enter the list of value separated by spaces: ', 'green')
@@ -29,6 +33,20 @@ guide_4 = termcolor.colored('Enter the percentages of the values you entered in 
 retry = termcolor.colored('must be a number. please retry.', 'red')
 
 df = pd.DataFrame(index=[], columns=[])
+
+def define_index():
+    global df
+    name = input(guide_b1)
+    cs_or_ts = enquiries.choose('Choose Index Type (Categorical or Time) : ', tscs_selection)
+    
+    if cs_or_ts == timeseries_df:
+        # not supported
+        return
+        range_q = input('Please Enter begin and end date separated by spaces :').split(' ')
+        range_index = pd.date_range(range_q[0], range_q[1])
+    elif cs_or_ts == categorical_df:
+        df[name] = range(0,length)
+        df = df.set_index(name)
 
 def do_action():
     global df
@@ -82,6 +100,7 @@ if __name__ == '__main__':
         print(retry)
         length = int(input(guide_1))
     
+    define_index()
     do_action()
     
     
