@@ -40,8 +40,6 @@ def do_action():
         name = input('Save as.. :')
         if name[-4:] != '.csv':
             name = name + '.csv'
-        
-        #FIXME データフレームの形が行と列で逆になっている
         df.to_csv(name)
         exit()
     elif user_action == ua_exit:
@@ -58,23 +56,11 @@ def do_action():
         values = input(guide_3).split(' ')
         values_percentage = [int(n) for n in input(guide_4).split(' ')]
         df[col_name] = random.choices(population = values, weights = values_percentage, k = length)
-        
-        #series = create_categorical(col_name, values, values_percentage)
-        #print(type(series))
-        #print(series)
-        #df = df.append(series, ignore_index = True)
         print('column added.')
     elif user_action == ua_create_numeric:
         print('this selection not supported yet.')
     
     do_action()
-
-
-# def create_categorical(col_name, values, values_percentage):
-#     # if first columns, normal create
-#     series_value = random.choices(population = values, weights = values_percentage, k = length)
-#     column = pd.Series(series_value, name = col_name, dtype='str')
-#     return column
 
 if __name__ == '__main__':
     # parser = argparse.ArgumentParser()
