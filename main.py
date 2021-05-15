@@ -71,10 +71,13 @@ def do_action():
     col_name = input(guide_2)
         
     if user_action == ua_create_categorical:
-        values = input(guide_3).split(' ')
-        values_percentage = [int(n) for n in input(guide_4).split(' ')]
-        df[col_name] = random.choices(population = values, weights = values_percentage, k = length)
-        print('column added.')
+        make_relation = input('Do you want to make relationships with other columns? yes or no (no)')
+        if make_relation == 'yes':
+            create_relation()
+        else:
+            values = input(guide_3).split(' ')
+            values_percentage = [int(n) for n in input(guide_4).split(' ')]
+            df[col_name] = random.choices(population = values, weights = values_percentage, k = length)
     elif user_action == ua_create_numeric:
         print('this selection not supported yet.')
     
