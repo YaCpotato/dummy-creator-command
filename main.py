@@ -48,6 +48,15 @@ def define_index():
         df[name] = range(0,length)
         df = df.set_index(name)
 
+def create_relation():
+    global df
+    values = input(guide_3).split(' ')
+    have_relations = df.columns
+    response = enquiries.choose('Select Columns you want to make relation', options, multi=True)
+    
+    for col in response:
+        df[col].unique
+
 def do_action():
     global df
     # choose action
