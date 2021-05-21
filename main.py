@@ -33,6 +33,15 @@ guide_4 = termcolor.colored('Enter the percentages of the values you entered in 
 retry = termcolor.colored('must be a number. please retry.', 'red')
 
 df = pd.DataFrame(index=[], columns=[])
+length = 0
+
+def define_data_length():
+    global length
+    try:
+        length = int(input(guide_1))
+    except:
+        print(retry)
+        define_data_length()
 
 def define_index():
     global df
@@ -106,12 +115,7 @@ if __name__ == '__main__':
     #     pass 
     
     # define dataframe length
-    try:
-        length = int(input(guide_1))
-    except:
-        print(retry)
-        length = int(input(guide_1))
-    
+    define_data_length()
     define_index()
     do_action()
     
